@@ -6,30 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Travel Planner</title>
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Laila:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS -->
     <link rel="stylesheet" href="../styles/styles.css" />
   </head>
 
   <body>
-    <header>
-      <h1>Find Your Adventure</h1>
-    </header>
-    <main>
-      <section id="form">
-        <form>
-          <label for="destination">Destination</label>
-          <input type="text" name="destination" placeholder="Where To?" />
-          <label for="date">Date</label>
-          <input type="date" name="date" id="" placeholder="YYYY / MM / DD" />
-          <input type="submit" value="Get Started" />
-          <input type="reset" value="Clear" />
-        </form>
-      </section>
-      <section id="results">
-        <div id="weather"></div>
-      </section>
+    <div class="main-ctn">
+      <header>
+        <!-- <h1>Find Your Adventure</h1> -->
+      </header>
+      <main>
+        <section class="section-form">
+          <h1>Find Your Adventure</h1>
+          <form>
+            <div class="input-group">
+              <div class="input-ctn">
+                <label for="destination">Destination</label>
+                <input type="text" name="destination" placeholder="Where To?" />
+              </div>
+              <div class="input-ctn">
+                <label for="date">Date</label>
+                <input type="date" name="date" id="" required placeholder="YYYY / MM / DD" />
+              </div>
+            </div>
+            <div class="input-btn-ctn">
+              <input type="reset" value="Clear" class="input-btn reset" />
+              <input type="submit" value="GET STARTED" class="input-btn" />
+            </div>
+          </form>
+        </section>
+        <section class="section-results">
+          <div id="weather"></div>
+        </section>
+      </main>
       <footer>
         <p>© 2021 Debora Durek - Udacity. All Rights Reserved.</p>
       </footer>
-    </main>
+    </div>
   </body>
 </html>

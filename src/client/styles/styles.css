@@ -1,0 +1,91 @@
+body {
+  margin: 0;
+  font-family: 'Laila', sans-serif;
+  color: #132743;
+}
+
+.main-ctn {
+  min-height: 100vh;
+  background-image: url('../media/bckg-img-arches-national-park.jpg');
+  background-position: 0 -340px;
+  background-repeat: no-repeat;
+  background-size: 120%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+main {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.section-form {
+  background-color: rgba(255, 251, 240, 0.85);
+  max-width: 800px;
+  padding: 30px 70px 50px;
+  border-radius: 25px;
+  text-align: center;
+  margin-right: 150px;
+}
+
+.section-form h1 {
+  font-size: 3rem;
+  margin: 10px 0 40px;
+}
+
+.input-group {
+  display: flex;
+  margin-bottom: 40px;
+}
+
+.input-ctn:not(:last-child) {
+  padding-right: 20px;
+}
+
+label {
+  margin-right: 5px;
+  font-weight: 500;
+}
+
+.input-ctn input {
+  font-family: 'Laila', sans-serif;
+  font-size: 15px;
+  margin-right: 5px;
+  padding: 11px 12px;
+  width: 150px;
+  height: 20px;
+  border-radius: 12px;
+  border: 2px solid #edc988;
+}
+
+input:focus {
+  outline: none;
+}
+
+input[type='date']:invalid::-webkit-datetime-edit {
+  color: #999 !important;
+}
+
+.input-btn {
+  padding: 10px;
+  width: 150px;
+  font-family: 'Laila', sans-serif;
+  font-weight: 500;
+  border-radius: 12px;
+  border: none;
+  background-color: #d7385e;
+  color: #fffbf0;
+}
+
+.input-btn:not(:last-child) {
+  margin-right: 30px;
+}
+
+.input-btn:hover {
+  background-color: #9e1d3b;
+}
+
+footer {
+  text-align: center;
+}
