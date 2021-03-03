@@ -1,0 +1,46 @@
+{
+  "name": "travel-planner-app",
+  "version": "1.0.0",
+  "description": "Travel Planner App",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node src/server/server.js",
+    "build-prod": "webpack --config webpack.prod.js",
+    "build-dev": "webpack --config webpack.dev.js",
+    "dev": "webpack-dev-server --config webpack.dev.js --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deboradurek/travel-planner-app.git"
+  },
+  "author": "Debora Durek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deboradurek/travel-planner-app/issues"
+  },
+  "homepage": "https://github.com/deboradurek/travel-planner-app#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.8",
+    "@babel/preset-env": "^7.13.9",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^5.1.1",
+    "css-minimizer-webpack-plugin": "^1.2.0",
+    "html-webpack-plugin": "^5.2.0",
+    "jest": "^26.6.3",
+    "mini-css-extract-plugin": "^1.3.9",
+    "sass": "^1.32.8",
+    "sass-loader": "^11.0.1",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.24.2",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
