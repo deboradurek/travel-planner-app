@@ -52,18 +52,21 @@ function getGeoNames(city, countryCode) {
   const username = process.env.USERNAME;
   const completeUrlAPI = `${baseUrlAPI}q=${city}&country=${countryCode}&maxRows=${maxRows}&username=${username}`;
   // Call generic function to get data from GeonamesAPI
-  makeRequest(completeUrlAPI)
-    // Parse data from GeoNamesAPI
-    .then((dataGeoNames) => {
-      const parsedData = {
-        latitude: dataGeoNames.geonames[0].lat,
-        longitude: dataGeoNames.geonames[0].lng,
-        city: dataGeoNames.geonames[0].name,
-        state: dataGeoNames.geonames[0].adminName1,
-        country: dataGeoNames.geonames[0].countryName,
-      };
-      console.log(parsedData);
-    });
+  return (
+    makeRequest(completeUrlAPI)
+      // Parse data from GeoNamesAPI. Object descontruction is used here to access geonames property
+      .then(({ geonames }) => {
+        const [{ lat, lng, name, adminName1, countryName }] = geonames; // Array and object descontruction
+        parsedData = {
+          latitude: lat,
+          longitude: lng,
+          city: name,
+          state: adminName1,
+          country: countryName,
+        };
+        console.log(parsedData);
+      })
+  );
 }
 
 // Generic request function GET/POST data from external WebAPI
