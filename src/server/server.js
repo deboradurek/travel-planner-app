@@ -1,5 +1,5 @@
 // Setup empty JS object to act as endpoint for all routes
-const projectData = {};
+let projectData = {};
 
 const dotenv = require('dotenv');
 dotenv.config();
@@ -45,24 +45,26 @@ function getData(req, res) {
 app.post('/add', postData);
 
 function postData(req, res) {
-  getGeoNames(req.body);
-
-  res.send({ status: 'POST Succeeded' });
+  getGeoNames(req.body).then(() => {
+    getWeatherbit().then(() => {
+      res.send({ status: 'POST Succeeded' });
+    });
+  });
 }
 
-// GET function for GeonamesAPI
+// GET function for Geonames API
 function getGeoNames({ city, countryCode, countdown }) {
   const baseUrlAPI = 'http://api.geonames.org/searchJSON?';
   const maxRows = 20;
   const username = process.env.USERNAME;
   const completeUrlAPI = `${baseUrlAPI}q=${city}&country=${countryCode}&maxRows=${maxRows}&username=${username}`;
-  // Call generic function to get data from GeonamesAPI
+  // Call generic function to get data from Geonames API
   return (
     makeRequest(completeUrlAPI)
-      // Parse data from GeoNamesAPI. Object descontruction is used here to access geonames property
+      // Parse data from GeoNames API. Object descontruction is used here to access geonames property
       .then(({ geonames }) => {
         const [{ lat, lng, name, adminName1, countryName }] = geonames; // Array and object descontruction
-        parsedData = {
+        projectData = {
           latitude: lat,
           longitude: lng,
           city: name,
@@ -70,7 +72,37 @@ function getGeoNames({ city, countryCode, countdown }) {
           country: countryName,
           countdown,
         };
-        console.log(parsedData);
+        // console.log(parsedData);
+      })
+  );
+}
+
+function getWeatherbit() {
+  const baseUrlAPI = 'https://api.weatherbit.io/v2.0/current?';
+  const lat = projectData.latitude;
+  const lon = projectData.longitude;
+  const key = process.env.WEATHERBIT_API_KEY;
+  const completeUrlAPI = `${baseUrlAPI}&lat=${lat}&lon=${lon}&key=${key}`;
+  // Call generic function to get data from Weatherbit API
+  return (
+    makeRequest(completeUrlAPI)
+      // Parse data from Weatherbit API
+      .then(({ data }) => {
+        const [{ city_name, temp, rh, clouds, wind_spd, wind_cdir, weather }] = data;
+
+        projectData = {
+          ...projectData,
+          cityName: city_name,
+          temperature: temp,
+          humidity: rh,
+          clouds,
+          windSpeed: wind_spd,
+          windDirection: wind_cdir,
+          weatherCode: weather.code,
+          weatherDescription: weather.description,
+        };
+
+        console.log(projectData);
       })
   );
 }
