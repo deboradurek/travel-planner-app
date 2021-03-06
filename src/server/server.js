@@ -1,9 +1,12 @@
+// Setup empty JS object to act as endpoint for all routes
+const projectData = {};
+
 const dotenv = require('dotenv');
 dotenv.config();
 
 const path = require('path');
 const express = require('express');
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 const cors = require('cors');
 const fetch = require('node-fetch');
 
@@ -14,12 +17,16 @@ const travelData = [];
 const app = express();
 
 // Setup middleware
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
 app.use(cors());
 
 // Initialize main project folder
-app.use(express.static(path.join(__dirname, '../client')));
+// app.use(express.static(path.join(__dirname, '../client')));
+app.use(express.static('dist'));
 
 // Setup server
 const port = 3000;
@@ -38,15 +45,13 @@ function getData(req, res) {
 app.post('/add', postData);
 
 function postData(req, res) {
-  const { city, countryCode } = req.body;
-
-  getGeoNames(city, countryCode);
+  getGeoNames(req.body);
 
   res.send({ status: 'POST Succeeded' });
 }
 
-// Specific GET function for GeonamesAPI
-function getGeoNames(city, countryCode) {
+// GET function for GeonamesAPI
+function getGeoNames({ city, countryCode, countdown }) {
   const baseUrlAPI = 'http://api.geonames.org/searchJSON?';
   const maxRows = 20;
   const username = process.env.USERNAME;
@@ -63,6 +68,7 @@ function getGeoNames(city, countryCode) {
           city: name,
           state: adminName1,
           country: countryName,
+          countdown,
         };
         console.log(parsedData);
       })
