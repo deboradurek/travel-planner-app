@@ -45,15 +45,15 @@ function getData(req, res) {
 app.post('/add', postData);
 
 function postData(req, res) {
-  getGeoNames(req.body).then(() => {
-    getWeatherbit().then(() => {
+  getGeoNames(req.body).then((dataGeoNames) => {
+    getWeatherbit(dataGeoNames).then(() => {
       res.send({ status: 'POST Succeeded' });
     });
   });
 }
 
 // GET function for Geonames API
-function getGeoNames({ city, countryCode, countdown }) {
+function getGeoNames({ city, countryCode, travelDate, countdown }) {
   const baseUrlAPI = 'http://api.geonames.org/searchJSON?';
   const maxRows = 20;
   const username = process.env.USERNAME;
@@ -70,19 +70,22 @@ function getGeoNames({ city, countryCode, countdown }) {
           city: name,
           state: adminName1,
           country: countryName,
+          travelDate,
           countdown,
         };
-        // console.log(parsedData);
       })
   );
 }
 
 function getWeatherbit() {
-  const baseUrlAPI = 'https://api.weatherbit.io/v2.0/current?';
   const lat = projectData.latitude;
   const lon = projectData.longitude;
   const key = process.env.WEATHERBIT_API_KEY;
-  const completeUrlAPI = `${baseUrlAPI}&lat=${lat}&lon=${lon}&key=${key}`;
+  let baseUrlAPI = 'https://api.weatherbit.io/v2.0/current?';
+  let completeUrlAPI = `${baseUrlAPI}&lat=${lat}&lon=${lon}&key=${key}`;
+  // Check IF travel date is within 7 days to use current weather
+  // if ()
+
   // Call generic function to get data from Weatherbit API
   return (
     makeRequest(completeUrlAPI)
