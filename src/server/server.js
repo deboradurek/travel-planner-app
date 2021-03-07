@@ -45,8 +45,8 @@ function getData(req, res) {
 app.post('/add', postData);
 
 function postData(req, res) {
-  getGeoNames(req.body).then((dataGeoNames) => {
-    getWeatherbit(dataGeoNames).then(() => {
+  getGeoNames(req.body).then(() => {
+    getWeatherbit().then(() => {
       res.send({ status: 'POST Succeeded' });
     });
   });
@@ -81,33 +81,63 @@ function getWeatherbit() {
   const lat = projectData.latitude;
   const lon = projectData.longitude;
   const key = process.env.WEATHERBIT_API_KEY;
-  let baseUrlAPI = 'https://api.weatherbit.io/v2.0/current?';
-  let completeUrlAPI = `${baseUrlAPI}&lat=${lat}&lon=${lon}&key=${key}`;
+
   // Check IF travel date is within 7 days to use current weather
-  // if ()
+  if (projectData.countdown <= 7) {
+    let baseUrlAPI = 'https://api.weatherbit.io/v2.0/current?';
+    let completeUrlAPI = `${baseUrlAPI}&lat=${lat}&lon=${lon}&key=${key}`;
+    // Call generic function to get data from Weatherbit API
+    return (
+      makeRequest(completeUrlAPI)
+        // Parse data from Weatherbit API for current weather
+        .then(({ data }) => {
+          const [{ city_name, temp, rh, clouds, wind_spd, wind_cdir, weather }] = data;
 
-  // Call generic function to get data from Weatherbit API
-  return (
-    makeRequest(completeUrlAPI)
-      // Parse data from Weatherbit API
-      .then(({ data }) => {
-        const [{ city_name, temp, rh, clouds, wind_spd, wind_cdir, weather }] = data;
+          projectData = {
+            ...projectData,
+            dataCurrentWeather: {
+              cityName: city_name,
+              temperature: temp,
+              humidity: rh,
+              clouds,
+              windSpeed: wind_spd,
+              windDirection: wind_cdir,
+              weatherCode: weather.code,
+              weatherDescription: weather.description,
+            },
+          };
 
-        projectData = {
-          ...projectData,
-          cityName: city_name,
-          temperature: temp,
-          humidity: rh,
-          clouds,
-          windSpeed: wind_spd,
-          windDirection: wind_cdir,
-          weatherCode: weather.code,
-          weatherDescription: weather.description,
-        };
-
-        console.log(projectData);
-      })
-  );
+          console.log(projectData);
+        })
+    );
+  } else if (projectData.countdown > 7) {
+    let baseUrlAPI = 'https://api.weatherbit.io/v2.0/forecast/daily?';
+    let completeUrlAPI = `${baseUrlAPI}&lat=${lat}&lon=${lon}&key=${key}`;
+    // Call generic function to get data from Weatherbit API
+    return (
+      makeRequest(completeUrlAPI)
+        // Parse data from Weatherbit API for 16 day weather forecast
+        .then(({ data }) => {
+          const newDataArray = data.map((obj) => {
+            const { temp, rh, clouds, wind_spd, wind_cdir, weather } = obj;
+            return {
+              temperature: temp,
+              humidity: rh,
+              clouds,
+              windSpeed: wind_spd,
+              windDirection: wind_cdir,
+              weatherCode: weather.code,
+              weatherDescription: weather.description,
+            };
+          });
+          projectData = {
+            ...projectData,
+            data16DayForecast: newDataArray,
+          };
+          console.log(projectData);
+        })
+    );
+  }
 }
 
 // Generic request function GET/POST data from external WebAPI
