@@ -47,7 +47,15 @@ app.post('/add', postData);
 function postData(req, res) {
   getGeoNames(req.body).then(() => {
     getWeatherbit().then(() => {
-      res.send({ status: 'POST Succeeded' });
+      getPixabay()
+        .then(() => {
+          res.send({ status: 'POST Succeeded' });
+        })
+        .catch((error) => {
+          res.status(404).send({
+            message: error.message,
+          });
+        });
     });
   });
 }
@@ -77,6 +85,7 @@ function getGeoNames({ city, countryCode, travelDate, countdown }) {
   );
 }
 
+// GET function for Weatherbit API
 function getWeatherbit() {
   const lat = projectData.latitude;
   const lon = projectData.longitude;
@@ -106,8 +115,6 @@ function getWeatherbit() {
               weatherDescription: weather.description,
             },
           };
-
-          console.log(projectData);
         })
     );
   } else if (projectData.countdown > 7) {
@@ -134,10 +141,36 @@ function getWeatherbit() {
             ...projectData,
             data16DayForecast: newDataArray,
           };
-          console.log(projectData);
         })
     );
   }
+}
+
+// GET function for Pixabay API
+function getPixabay() {
+  const baseUrlAPI = 'https://pixabay.com/api/?';
+  const key = process.env.PIXABAY_API_KEY;
+  const searchTerm = encodeURIComponent(projectData.city);
+  const imageType = 'photo';
+  const qtyPerPage = 3;
+  const category = 'background';
+  const orientation = 'horizontal';
+  const completeUrlAPI = `${baseUrlAPI}key=${key}&q=${searchTerm}&image_type=${imageType}&per_page=${qtyPerPage}&category=${category}&orientation=${orientation}`;
+  console.log(searchTerm);
+  // console.log(completeUrlAPI);
+  // Call generic function to get data from Geonames API
+  return makeRequest(completeUrlAPI).then(({ hits, total }) => {
+    if (total === 0) {
+      throw new Error('City not found.');
+    }
+    const [{ webformatURL }] = hits;
+
+    projectData = {
+      ...projectData,
+      webformatURL,
+    };
+    console.log(projectData);
+  });
 }
 
 // Generic request function GET/POST data from external WebAPI
@@ -157,6 +190,7 @@ const makeRequest = async (url, data) => {
 
   try {
     const res = await response.json();
+    console.log(res);
     return res;
   } catch (error) {
     console.log('error', error);
