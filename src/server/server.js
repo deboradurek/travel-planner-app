@@ -44,34 +44,39 @@ function getData(req, res) {
 // Main Function, POST route
 app.post('/add', postData);
 
-function postData(req, res) {
-  getGeoNames(req.body).then(() => {
-    getWeatherbit().then(() => {
-      getPixabay()
-        .then(() => {
-          res.send({ status: 'POST Succeeded' });
-        })
-        .catch((error) => {
-          res.status(404).send({
-            message: error.message,
-          });
-        });
+async function postData(req, res) {
+  try {
+    await getGeoNames(req.body);
+    await getWeatherbit();
+    await getPixabay();
+    res.send({ status: 'POST Succeeded' });
+  } catch (error) {
+    res.status(404).send({
+      message: error.message,
     });
-  });
+    // console.log(error.message);
+  }
 }
 
 // GET function for Geonames API
 function getGeoNames({ city, countryCode, travelDate, countdown }) {
   const baseUrlAPI = 'http://api.geonames.org/searchJSON?';
-  const maxRows = 20;
+  const cityName = encodeURIComponent(city);
+  const maxRows = 10;
   const username = process.env.USERNAME;
-  const completeUrlAPI = `${baseUrlAPI}q=${city}&country=${countryCode}&maxRows=${maxRows}&username=${username}`;
+  const completeUrlAPI = `${baseUrlAPI}q=${cityName}&country=${countryCode}&maxRows=${maxRows}&username=${username}`;
   // Call generic function to get data from Geonames API
   return (
     makeRequest(completeUrlAPI)
       // Parse data from GeoNames API. Object descontruction is used here to access geonames property
-      .then(({ geonames }) => {
+      .then(({ geonames, totalResultsCount }) => {
+        if (totalResultsCount === 0) {
+          throw new Error('City not found.');
+        }
+
         const [{ lat, lng, name, adminName1, countryName }] = geonames; // Array and object descontruction
+
+        // Save received data in server endpoint
         projectData = {
           latitude: lat,
           longitude: lng,
@@ -95,6 +100,7 @@ function getWeatherbit() {
   if (projectData.countdown <= 7) {
     let baseUrlAPI = 'https://api.weatherbit.io/v2.0/current?';
     let completeUrlAPI = `${baseUrlAPI}&lat=${lat}&lon=${lon}&key=${key}`;
+
     // Call generic function to get data from Weatherbit API
     return (
       makeRequest(completeUrlAPI)
@@ -102,6 +108,7 @@ function getWeatherbit() {
         .then(({ data }) => {
           const [{ city_name, temp, rh, clouds, wind_spd, wind_cdir, weather }] = data;
 
+          // Save received data in server endpoint
           projectData = {
             ...projectData,
             dataCurrentWeather: {
@@ -127,6 +134,7 @@ function getWeatherbit() {
         .then(({ data }) => {
           const newDataArray = data.map((obj) => {
             const { temp, rh, clouds, wind_spd, wind_cdir, weather } = obj;
+
             return {
               temperature: temp,
               humidity: rh,
@@ -137,6 +145,8 @@ function getWeatherbit() {
               weatherDescription: weather.description,
             };
           });
+
+          // Save received data in server endpoint
           projectData = {
             ...projectData,
             data16DayForecast: newDataArray,
@@ -156,12 +166,11 @@ function getPixabay() {
   const category = 'background';
   const orientation = 'horizontal';
   const completeUrlAPI = `${baseUrlAPI}key=${key}&q=${searchTerm}&image_type=${imageType}&per_page=${qtyPerPage}&category=${category}&orientation=${orientation}`;
-  console.log(searchTerm);
-  // console.log(completeUrlAPI);
+
   // Call generic function to get data from Geonames API
   return makeRequest(completeUrlAPI).then(({ hits, total }) => {
     if (total === 0) {
-      throw new Error('City not found.');
+      throw new Error('Image not found.');
     }
     const [{ webformatURL }] = hits;
 
@@ -190,7 +199,6 @@ const makeRequest = async (url, data) => {
 
   try {
     const res = await response.json();
-    console.log(res);
     return res;
   } catch (error) {
     console.log('error', error);
