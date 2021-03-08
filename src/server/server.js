@@ -86,6 +86,7 @@ function getGeoNames({ city, countryCode, travelDate, countdown }) {
           travelDate,
           countdown,
         };
+        // console.log(projectData);
       })
   );
 }
@@ -96,7 +97,7 @@ function getWeatherbit() {
   const lon = projectData.longitude;
   const key = process.env.WEATHERBIT_API_KEY;
 
-  // Check IF travel date is within 7 days to use current weather
+  // Check if travel date is within 7 days to use current weather
   if (projectData.countdown <= 7) {
     let baseUrlAPI = 'https://api.weatherbit.io/v2.0/current?';
     let completeUrlAPI = `${baseUrlAPI}&lat=${lat}&lon=${lon}&key=${key}`;
@@ -122,6 +123,7 @@ function getWeatherbit() {
               weatherDescription: weather.description,
             },
           };
+          // console.log(projectData);
         })
     );
   } else if (projectData.countdown > 7) {
@@ -151,6 +153,7 @@ function getWeatherbit() {
             ...projectData,
             data16DayForecast: newDataArray,
           };
+          // console.log(projectData);
         })
     );
   }
@@ -163,17 +166,33 @@ function getPixabay() {
   const searchTerm = encodeURIComponent(projectData.city);
   const imageType = 'photo';
   const qtyPerPage = 3;
-  const category = 'background';
   const orientation = 'horizontal';
-  const completeUrlAPI = `${baseUrlAPI}key=${key}&q=${searchTerm}&image_type=${imageType}&per_page=${qtyPerPage}&category=${category}&orientation=${orientation}`;
+  let completeUrlAPI = `${baseUrlAPI}key=${key}&q=${searchTerm}&image_type=${imageType}&per_page=${qtyPerPage}&orientation=${orientation}`;
 
-  // Call generic function to get data from Geonames API
+  // Call generic function to get an image of a city
   return makeRequest(completeUrlAPI).then(({ hits, total }) => {
+    // Check if request gets an error
     if (total === 0) {
-      throw new Error('Image not found.');
+      // If error, look for an image of the country instead
+      const searchForCountry = encodeURIComponent(projectData.country);
+      completeUrlAPI = `${baseUrlAPI}key=${key}&q=${searchForCountry}&image_type=${imageType}&per_page=${qtyPerPage}&orientation=${orientation}`;
+      return makeRequest(completeUrlAPI).then(({ hits, total }) => {
+        // If attempt is unsuccessful, throw an error
+        if (total === 0) {
+          throw new Error('Image not found.');
+        }
+        // If attempt is successful, add country image to endpoind
+        let [{ webformatURL }] = hits;
+        projectData = {
+          ...projectData,
+          webformatURL,
+        };
+        console.log(projectData);
+      });
     }
-    const [{ webformatURL }] = hits;
 
+    // If there is no error, add city image to endpoint
+    let [{ webformatURL }] = hits;
     projectData = {
       ...projectData,
       webformatURL,
