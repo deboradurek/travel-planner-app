@@ -4,7 +4,13 @@ body {
   color: #132743;
 }
 
-.main-ctn {
+h1 {
+  font-size: 3rem;
+  margin: 0;
+  text-align: center;
+}
+
+.parent-ctn {
   min-height: 100vh;
   background-image: url('../media/bckg-img-arches-national-park.jpg');
   background-position: 0 -340px;
@@ -15,56 +21,70 @@ body {
 }
 
 main {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 40% 1fr;
+  // justify-content: flex-end;
+  // align-items: center;
 }
 
-.section-form {
+.info-ctn {
   background-color: rgba(255, 251, 240, 0.85);
   max-width: 800px;
-  padding: 30px 70px 50px;
-  border-radius: 25px;
-  text-align: center;
-  margin-right: 150px;
+  padding: 30px 50px;
 }
 
-.section-form h1 {
-  font-size: 3rem;
-  margin: 10px 0 40px;
-}
+// .section-form {
+//   text-align: center;
+// }
 
 .input-group {
   display: flex;
-  margin-bottom: 40px;
+  justify-content: space-between;
+  margin: 32px 0 24px;
 }
 
-.input-ctn:not(:last-child) {
-  padding-right: 20px;
+.input-ctn {
+  text-align: left;
 }
+
+// .input-ctn:not(:last-child) {
+//   padding-right: 20px;
+// }
 
 label {
-  margin-right: 5px;
   font-weight: 500;
+  display: block;
 }
 
 .input-ctn input {
   font-family: 'Laila', sans-serif;
   font-size: 15px;
-  margin-right: 5px;
   padding: 11px 12px;
-  width: 150px;
+  width: 250px;
   height: 20px;
   border-radius: 12px;
   border: 2px solid #edc988;
+}
+
+#country-code {
+  width: 80px;
 }
 
 input:focus {
   outline: none;
 }
 
+::placeholder {
+  color: #bbb;
+}
+
 input[type='date']:invalid::-webkit-datetime-edit {
-  color: #999 !important;
+  color: #bbb;
+}
+
+.input-btn-ctn {
+  display: flex;
+  justify-content: space-between;
 }
 
 .input-btn {
@@ -78,9 +98,14 @@ input[type='date']:invalid::-webkit-datetime-edit {
   color: #fffbf0;
 }
 
-.input-btn:not(:last-child) {
-  margin-right: 30px;
+.submit {
+  min-width: 40vw;
+  margin-left: 40px;
 }
+
+// .input-btn:not(:last-child) {
+//   margin-right: 30px;
+// }
 
 .input-btn:hover {
   background-color: #9e1d3b;

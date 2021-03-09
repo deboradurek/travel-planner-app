@@ -12,46 +12,53 @@
       href="https://fonts.googleapis.com/css2?family=Laila:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="../styles/styles.css" />
   </head>
 
   <body>
-    <div class="main-ctn">
+    <div class="parent-ctn">
       <header>
         <!-- <h1>Find Your Adventure</h1> -->
       </header>
       <main>
-        <section class="section-form">
-          <h1>Find Your Adventure</h1>
-          <form>
-            <div class="input-group">
-              <div class="input-ctn">
-                <label for="city">City of Destination</label>
-                <input type="text" id="city" name="city" placeholder="City?" />
+        <div class="empty-ctn"></div>
+        <div class="info-ctn">
+          <section class="section-form">
+            <h1>Find Your Adventure</h1>
+            <form>
+              <div class="input-group">
+                <div class="input-ctn">
+                  <label for="city">City of Destination</label>
+                  <input type="text" id="city" name="city" placeholder="Vancouver" />
+                </div>
+                <div class="input-ctn">
+                  <label for="country">Country Code</label>
+                  <input type="text" id="country-code" name="country" placeholder="CA" />
+                </div>
+                <div class="input-ctn">
+                  <label for="date">Departure Date</label>
+                  <input type="date" id="date" name="date" required placeholder="YYYY / MM / DD" />
+                </div>
               </div>
-              <div class="input-ctn">
-                <label for="country">Country Code</label>
-                <input type="text" id="country-code" name="country" placeholder="Country?" />
+              <div class="input-btn-ctn">
+                <input type="reset" value="Clear" class="input-btn reset" />
+                <input type="submit" value="GET STARTED" class="input-btn submit" />
               </div>
-              <div class="input-ctn">
-                <label for="date">Date</label>
-                <input type="date" id="date" name="date" required placeholder="YYYY / MM / DD" />
-              </div>
-            </div>
-            <div class="input-btn-ctn">
-              <input type="reset" value="Clear" class="input-btn reset" />
-              <input type="submit" value="GET STARTED" class="input-btn" />
-            </div>
-          </form>
-        </section>
-        <section class="section-results">
-          <div id="weather"></div>
-        </section>
+            </form>
+          </section>
+
+          <section class="section-results">
+            <div id="countdown"></div>
+            <div id="cityName"></div>
+            <div id="State/Province"></div>
+            <div id="d"></div>
+            <div id="e"></div>
+            <div id="f"></div>
+            <img id="trip-image" src="" alt="" />
+          </section>
+        </div>
       </main>
       <footer>
-        <p>© 2021 Debora Durek - Udacity. All Rights Reserved.</p>
+        <!-- <p>© 2021 Debora Durek - Udacity. All Rights Reserved.</p> -->
       </footer>
     </div>
   </body>
