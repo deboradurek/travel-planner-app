@@ -12,6 +12,7 @@
       href="https://fonts.googleapis.com/css2?family=Laila:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
   </head>
 
   <body>
@@ -20,7 +21,6 @@
         <!-- <h1>Find Your Adventure</h1> -->
       </header>
       <main>
-        <div class="empty-ctn"></div>
         <div class="info-ctn">
           <section class="section-form">
             <h1>Find Your Adventure</h1>
@@ -47,12 +47,32 @@
           </section>
 
           <section class="section-results">
-            <div id="countdown"></div>
-            <div id="cityName"></div>
-            <div id="State/Province"></div>
-            <div id="d"></div>
-            <div id="e"></div>
-            <div id="f"></div>
+            <div id="city-name"></div>
+            <div id="country"></div>
+            <div class="results-group">
+              <div class="travel-date-ctn results-subgroup">
+                <div id="travel-date-title" class="result"></div>
+                <div id="travel-date" class="result"></div>
+              </div>
+              <div class="countdown-ctn results-subgroup">
+                <div id="countdown" class="result"></div>
+                <div id="countdown-title" class="result"></div>
+              </div>
+              <div class="result results-subgroup">
+                <div id="temperature" class="result"></div>
+                <div id="temperature-title" class="result"></div>
+              </div>
+
+              <div class="weather-description-ctn results-subgroup">
+                <div id="weather-code" class="result"></div>
+                <div id="weather-description" class="result"></div>
+              </div>
+              <div class="extra-info-ctn results-subgroup">
+                <div id="humidity" class="result"></div>
+                <div id="clouds" class="result"></div>
+                <div id="wind-speed" class="result"></div>
+              </div>
+            </div>
             <img id="trip-image" src="" alt="" />
           </section>
         </div>
