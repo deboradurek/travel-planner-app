@@ -46,25 +46,31 @@ const provideUserInput = async (data = {}) => {
 
 // Function to Update UI
 function updateUI(allData) {
-  document.getElementById('city-name').innerHTML = `<p>${allData.city}</p>`;
-  // document.getElementById('state').innerHTML = `<p>${allData.state}</p>`;
-  document.getElementById('country').innerHTML = `<p>${allData.state} - ${allData.country}</p>`;
-  document.getElementById('travel-date').innerHTML = `<p>Travel Date: ${allData.travelDate}</p>`;
-  document.getElementById('countdown').innerHTML = `<p>${allData.countdown} day(s) to go!</p>`;
-  document.getElementById('temperature').innerHTML = `<p>${Math.round(
+  document.getElementById('city-name').innerHTML = `${allData.city}`;
+  document.getElementById('country').innerHTML = `${allData.state} - ${allData.country}`;
+
+  document.getElementById('travel-date-title').innerHTML = '<p><strong>Trip Date</strong></p>';
+  document.getElementById('travel-date').innerHTML = `${allData.travelDate}`;
+
+  document.getElementById('countdown-title').innerHTML = 'days to go';
+  document.getElementById('countdown').innerHTML = `${allData.countdown}`;
+
+  document.getElementById('temperature').innerHTML = Math.round(
     allData.dataCurrentWeather.temperature
-  )} °C</p>`;
-  document.getElementById('humidity').innerHTML = `<p>${allData.dataCurrentWeather.humidity} %</p>`;
-  document.getElementById('clouds').innerHTML = `<p>${allData.dataCurrentWeather.clouds} %</p>`;
-  document.getElementById(
-    'wind-speed'
-  ).innerHTML = `<p>${allData.dataCurrentWeather.windSpeed} m/s</p>`;
+  );
+  document.getElementById('temperature-title').innerHTML = '<span> °C<span>';
+
+  document.getElementById('humidity').innerHTML = `${Math.round(
+    allData.dataCurrentWeather.humidity
+  )} %`;
+  document.getElementById('clouds').innerHTML = `${allData.dataCurrentWeather.clouds} %`;
+  document.getElementById('wind-speed').innerHTML = `${Math.round(
+    allData.dataCurrentWeather.windSpeed
+  )} m/s`;
+  document.getElementById('weather-code').innerHTML = `${allData.dataCurrentWeather.weatherCode}`;
   document.getElementById(
     'weather-description'
-  ).innerHTML = `<p>${allData.dataCurrentWeather.weatherDescription}</p>`;
-  document.getElementById(
-    'weather-code'
-  ).innerHTML = `<p>${allData.dataCurrentWeather.weatherCode}</p>`;
+  ).innerHTML = `${allData.dataCurrentWeather.weatherDescription}`;
   document.getElementById('trip-image').src = allData.webformatURL;
 }
 
