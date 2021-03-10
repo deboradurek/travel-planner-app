@@ -49,28 +49,39 @@ function updateUI(allData) {
   document.getElementById('city-name').innerHTML = `${allData.city}`;
   document.getElementById('country').innerHTML = `${allData.state} - ${allData.country}`;
 
-  document.getElementById('travel-date-title').innerHTML = '<p><strong>Trip Date</strong></p>';
+  document.getElementById('travel-date-title').innerHTML = '<p><strong>Date</strong></p>';
   document.getElementById('travel-date').innerHTML = `${allData.travelDate}`;
 
-  document.getElementById('countdown-title').innerHTML = 'days to go';
+  document.getElementById('countdown-title').innerHTML = 'days to go!';
   document.getElementById('countdown').innerHTML = `${allData.countdown}`;
 
-  document.getElementById('temperature').innerHTML = Math.round(
+  document.getElementById('temperature').innerHTML = `${Math.round(
     allData.dataCurrentWeather.temperature
-  );
-  document.getElementById('temperature-title').innerHTML = '<span> °C<span>';
+  )}<span> °C</span>`;
 
+  document.getElementById('humidity-icon').src = './src/client/media/humidity.svg';
   document.getElementById('humidity').innerHTML = `${Math.round(
     allData.dataCurrentWeather.humidity
   )} %`;
+
+  document.getElementById('clouds-icon').src = './src/client/media/cloud.svg';
   document.getElementById('clouds').innerHTML = `${allData.dataCurrentWeather.clouds} %`;
+
+  document.getElementById('wind-icon').src = './src/client/media/wind.svg';
   document.getElementById('wind-speed').innerHTML = `${Math.round(
     allData.dataCurrentWeather.windSpeed
   )} m/s`;
-  document.getElementById('weather-code').innerHTML = `${allData.dataCurrentWeather.weatherCode}`;
+
+  document.getElementById('wind-dir-icon').src = './src/client/media/compass.svg';
+  document.getElementById('wind-dir').innerHTML = allData.dataCurrentWeather.windDirection;
+
+  // Get weather description icon
+  const src = `https://www.weatherbit.io/static/img/icons/${allData.dataCurrentWeather.weatherIcon}.png`;
+  document.getElementById('weather-icon').src = src;
   document.getElementById(
     'weather-description'
   ).innerHTML = `${allData.dataCurrentWeather.weatherDescription}`;
+
   document.getElementById('trip-image').src = allData.webformatURL;
 }
 
