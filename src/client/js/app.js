@@ -46,18 +46,31 @@ const provideUserInput = async (data = {}) => {
 
 // Function to Update UI
 function updateUI(allData) {
-  document.getElementById('city-name').innerHTML = `${allData.city}`;
+  document.getElementById('city-name').innerHTML = allData.city;
   document.getElementById('country').innerHTML = `${allData.state} - ${allData.country}`;
 
-  document.getElementById('travel-date-title').innerHTML = '<p><strong>Date</strong></p>';
-  document.getElementById('travel-date').innerHTML = `${allData.travelDate}`;
+  document.getElementById('travel-date-icon').src = './src/client/media/travel.svg';
+  document.getElementById('travel-date-title').innerHTML = 'Date';
+  document.getElementById('travel-date').innerHTML = allData.travelDate;
 
+  document.getElementById('countdown-icon').src = './src/client/media/fast-time.svg';
   document.getElementById('countdown-title').innerHTML = 'days to go!';
-  document.getElementById('countdown').innerHTML = `${allData.countdown}`;
+  document.getElementById('countdown').innerHTML = allData.countdown;
 
+  document.getElementById('temperature-icon').src = './src/client/media/thermometer.svg';
   document.getElementById('temperature').innerHTML = `${Math.round(
     allData.dataCurrentWeather.temperature
   )}<span> °C</span>`;
+
+  // Weather description
+  document.getElementById('weather-icon0').src = './src/client/media/forecast-black.svg';
+  const src = `https://www.weatherbit.io/static/img/icons/${allData.dataCurrentWeather.weatherIcon}.png`;
+  document.getElementById('weather-icon').src = src;
+  document.getElementById('weather-description').innerHTML =
+    allData.dataCurrentWeather.weatherDescription;
+
+  // Extra info
+  document.getElementById('extra-icon').src = './src/client/media/weathercock.svg';
 
   document.getElementById('humidity-icon').src = './src/client/media/humidity.svg';
   document.getElementById('humidity').innerHTML = `${Math.round(
@@ -74,13 +87,6 @@ function updateUI(allData) {
 
   document.getElementById('wind-dir-icon').src = './src/client/media/compass.svg';
   document.getElementById('wind-dir').innerHTML = allData.dataCurrentWeather.windDirection;
-
-  // Get weather description icon
-  const src = `https://www.weatherbit.io/static/img/icons/${allData.dataCurrentWeather.weatherIcon}.png`;
-  document.getElementById('weather-icon').src = src;
-  document.getElementById(
-    'weather-description'
-  ).innerHTML = `${allData.dataCurrentWeather.weatherDescription}`;
 
   document.getElementById('trip-image').src = allData.webformatURL;
 }
