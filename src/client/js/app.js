@@ -49,9 +49,9 @@ function updateUI(allData) {
   document.getElementById('city-name').innerHTML = allData.city;
   document.getElementById('country').innerHTML = `${allData.state} - ${allData.country}`;
 
-  document.getElementById('travel-date-icon').src = './src/client/media/travel.svg';
-  document.getElementById('travel-date-title').innerHTML = 'Date';
-  document.getElementById('travel-date').innerHTML = allData.travelDate;
+  document.getElementById('forecast-date-icon').src = './src/client/media/calendar.svg';
+  document.getElementById('forecast-date-title').innerHTML = 'Forecast for';
+  document.getElementById('forecast-date').innerHTML = allData.dataCurrentWeather.dateTime;
 
   document.getElementById('countdown-icon').src = './src/client/media/fast-time.svg';
   document.getElementById('countdown-title').innerHTML = 'days to go!';
