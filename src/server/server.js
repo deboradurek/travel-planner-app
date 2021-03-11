@@ -49,7 +49,7 @@ async function postData(req, res) {
     await getGeoNames(req.body);
     await getWeatherbit();
     await getPixabay();
-    res.send({ status: 'POST Succeeded' });
+    res.send(projectData);
   } catch (error) {
     res.status(404).send({
       message: error.message,
@@ -107,19 +107,20 @@ function getWeatherbit() {
       makeRequest(completeUrlAPI)
         // Parse data from Weatherbit API for current weather
         .then(({ data }) => {
-          const [{ city_name, temp, rh, clouds, wind_spd, wind_cdir, weather }] = data;
+          const [{ city_name, datetime, temp, rh, clouds, wind_spd, wind_cdir, weather }] = data;
 
           // Save received data in server endpoint
           projectData = {
             ...projectData,
             dataCurrentWeather: {
               cityName: city_name,
+              dateTime: datetime,
               temperature: temp,
               humidity: rh,
               clouds,
               windSpeed: wind_spd,
               windDirection: wind_cdir,
-              weatherCode: weather.code,
+              weatherIcon: weather.icon,
               weatherDescription: weather.description,
             },
           };
@@ -135,15 +136,16 @@ function getWeatherbit() {
         // Parse data from Weatherbit API for 16 day weather forecast
         .then(({ data }) => {
           const newDataArray = data.map((obj) => {
-            const { temp, rh, clouds, wind_spd, wind_cdir, weather } = obj;
+            const { datetime, temp, rh, clouds, wind_spd, wind_cdir, weather } = obj;
 
             return {
+              dateTime: datetime,
               temperature: temp,
               humidity: rh,
               clouds,
               windSpeed: wind_spd,
               windDirection: wind_cdir,
-              weatherCode: weather.code,
+              weatherIcon: weather.icon,
               weatherDescription: weather.description,
             };
           });
