@@ -146,6 +146,9 @@ input[type='date']:invalid::-webkit-datetime-edit {
   background-color: rgba(255, 251, 240, 0.85);
   box-shadow: 7px 11px 6px #dbd8ce;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .top-icons {
@@ -185,8 +188,8 @@ hr {
   font-weight: 600;
 }
 
-#weather-icon0 {
-  margin-bottom: 5px;
+.weather-description-ctn hr {
+  margin-bottom: 0;
 }
 
 #weather-icon {
