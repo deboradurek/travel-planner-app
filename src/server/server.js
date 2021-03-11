@@ -45,6 +45,7 @@ function getData(req, res) {
 app.post('/add', postData);
 
 async function postData(req, res) {
+  projectData = {};
   try {
     await getGeoNames(req.body);
     await getWeatherbit();
@@ -112,17 +113,19 @@ function getWeatherbit() {
           // Save received data in server endpoint
           projectData = {
             ...projectData,
-            dataCurrentWeather: {
-              cityName: city_name,
-              dateTime: datetime,
-              temperature: temp,
-              humidity: rh,
-              clouds,
-              windSpeed: wind_spd,
-              windDirection: wind_cdir,
-              weatherIcon: weather.icon,
-              weatherDescription: weather.description,
-            },
+            dataWeather: [
+              {
+                cityName: city_name,
+                dateTime: datetime,
+                temperature: temp,
+                humidity: rh,
+                clouds,
+                windSpeed: wind_spd,
+                windDirection: wind_cdir,
+                weatherIcon: weather.icon,
+                weatherDescription: weather.description,
+              },
+            ],
           };
           // console.log(projectData);
         })
@@ -153,8 +156,9 @@ function getWeatherbit() {
           // Save received data in server endpoint
           projectData = {
             ...projectData,
-            data16DayForecast: newDataArray,
+            dataWeather: newDataArray,
           };
+
           // console.log(projectData);
         })
     );

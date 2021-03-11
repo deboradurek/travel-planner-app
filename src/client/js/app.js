@@ -1,6 +1,8 @@
 // Event listener to form
 document.querySelector('form').addEventListener('submit', handleSubmit);
 
+let currentWeather;
+
 // Main function
 function handleSubmit(event) {
   event.preventDefault();
@@ -13,10 +15,13 @@ function handleSubmit(event) {
   const futureDate = new Date(travelDate).setHours(23);
   const countdown = Math.ceil((futureDate - presentDate) / (1000 * 60 * 60 * 24));
   // Send input values to server endpoint
-  provideUserInput({ city, countryCode, travelDate, countdown }).then((allData) => {
-    // console.log(allData);
-    updateUI(allData);
-  });
+  provideUserInput({ city, countryCode, travelDate, countdown }).then(
+    ({ dataWeather, ...moreData }) => {
+      // console.log(allData);
+      currentWeather = dataWeather[0];
+      updateMainUI(moreData);
+    }
+  );
 }
 
 // Function to POST user input values, pointing to local server
@@ -45,50 +50,45 @@ const provideUserInput = async (data = {}) => {
 };
 
 // Function to Update UI
-function updateUI(allData) {
-  document.getElementById('city-name').innerHTML = allData.city;
-  document.getElementById('country').innerHTML = `${allData.state} - ${allData.country}`;
+function updateMainUI(moreData) {
+  document.getElementById('city-name').innerHTML = moreData.city;
+  document.getElementById('country').innerHTML = `${moreData.state} - ${moreData.country}`;
 
   document.getElementById('forecast-date-icon').src = './src/client/media/calendar.svg';
   document.getElementById('forecast-date-title').innerHTML = 'Forecast for';
-  document.getElementById('forecast-date').innerHTML = allData.dataCurrentWeather.dateTime;
+  document.getElementById('forecast-date').innerHTML = currentWeather.dateTime.slice(0, 10);
 
   document.getElementById('countdown-icon').src = './src/client/media/fast-time.svg';
   document.getElementById('countdown-title').innerHTML = 'days to go!';
-  document.getElementById('countdown').innerHTML = allData.countdown;
+  document.getElementById('countdown').innerHTML = moreData.countdown;
 
   document.getElementById('temperature-icon').src = './src/client/media/thermometer.svg';
   document.getElementById('temperature').innerHTML = `${Math.round(
-    allData.dataCurrentWeather.temperature
+    currentWeather.temperature
   )}<span> °C</span>`;
 
   // Weather description
   document.getElementById('weather-icon0').src = './src/client/media/forecast-black.svg';
-  const src = `https://www.weatherbit.io/static/img/icons/${allData.dataCurrentWeather.weatherIcon}.png`;
+  const src = `https://www.weatherbit.io/static/img/icons/${currentWeather.weatherIcon}.png`;
   document.getElementById('weather-icon').src = src;
-  document.getElementById('weather-description').innerHTML =
-    allData.dataCurrentWeather.weatherDescription;
+  document.getElementById('weather-description').innerHTML = currentWeather.weatherDescription;
 
   // Extra info
   document.getElementById('extra-icon').src = './src/client/media/weathercock.svg';
 
   document.getElementById('humidity-icon').src = './src/client/media/humidity.svg';
-  document.getElementById('humidity').innerHTML = `${Math.round(
-    allData.dataCurrentWeather.humidity
-  )} %`;
+  document.getElementById('humidity').innerHTML = `${Math.round(currentWeather.humidity)} %`;
 
   document.getElementById('clouds-icon').src = './src/client/media/cloud.svg';
-  document.getElementById('clouds').innerHTML = `${allData.dataCurrentWeather.clouds} %`;
+  document.getElementById('clouds').innerHTML = `${currentWeather.clouds} %`;
 
   document.getElementById('wind-icon').src = './src/client/media/wind.svg';
-  document.getElementById('wind-speed').innerHTML = `${Math.round(
-    allData.dataCurrentWeather.windSpeed
-  )} m/s`;
+  document.getElementById('wind-speed').innerHTML = `${Math.round(currentWeather.windSpeed)} m/s`;
 
   document.getElementById('wind-dir-icon').src = './src/client/media/compass.svg';
-  document.getElementById('wind-dir').innerHTML = allData.dataCurrentWeather.windDirection;
+  document.getElementById('wind-dir').innerHTML = currentWeather.windDirection;
 
-  document.getElementById('trip-image').src = allData.webformatURL;
+  document.getElementById('trip-image').src = moreData.webformatURL;
 }
 
 export { handleSubmit };
