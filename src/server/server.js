@@ -116,7 +116,7 @@ function getWeatherbit() {
             dataWeather: [
               {
                 cityName: city_name,
-                dateTime: datetime,
+                dateTime: datetime.slice(0, 10),
                 temperature: temp,
                 humidity: rh,
                 clouds,
