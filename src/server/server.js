@@ -171,9 +171,10 @@ function getPixabay() {
   const key = process.env.PIXABAY_API_KEY;
   const searchTerm = encodeURIComponent(projectData.city);
   const imageType = 'photo';
+  const category = 'buildings';
   const qtyPerPage = 3;
   const orientation = 'horizontal';
-  let completeUrlAPI = `${baseUrlAPI}key=${key}&q=${searchTerm}&image_type=${imageType}&per_page=${qtyPerPage}&orientation=${orientation}`;
+  let completeUrlAPI = `${baseUrlAPI}key=${key}&q=${searchTerm}&image_type=${imageType}&category=${category}&per_page=${qtyPerPage}&orientation=${orientation}`;
 
   // Call generic function to get an image of a city
   return makeRequest(completeUrlAPI).then(({ hits, total }) => {
