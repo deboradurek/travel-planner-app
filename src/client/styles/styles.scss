@@ -132,7 +132,7 @@ input[type='date']:invalid::-webkit-datetime-edit {
   font-size: 1.3rem;
 }
 
-.results-group {
+.results-dashboard {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 1rem;
@@ -162,8 +162,9 @@ hr {
   width: 90%;
 }
 
-#travel-date {
+#forecast-date {
   font-weight: 600;
+  margin-top: 10px;
 }
 
 #countdown {
@@ -224,6 +225,50 @@ hr {
   margin: 0 0 8px;
 }
 
+// Weather Summary
+
+#results-summary {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 20px 10px;
+  text-align: center;
+  margin: 50px 0;
+}
+
+.day-summary-ctn {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  padding: 15px 5px;
+  background-color: rgba(255, 247, 225, 0.8);
+  box-shadow: 1px 8px 5px #dbd8ce, 0px -2px 5px #fffbf0;
+  cursor: pointer;
+}
+
+.day-summary-ctn:hover {
+}
+
+.date-summary {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.temperature-summary {
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: #d7385e;
+}
+
+.celcius-summary {
+  font-size: 60%;
+}
+
+.icon-summary {
+  width: 80px;
+}
+
+// City / Country Image
+
 .image-ctn {
   text-align: center;
 }
@@ -232,7 +277,7 @@ hr {
   border-radius: 30px;
 }
 
-span {
+.celcius {
   font-size: 20%;
 }
 

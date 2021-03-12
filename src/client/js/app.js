@@ -19,7 +19,8 @@ function handleSubmit(event) {
     ({ dataWeather, ...moreData }) => {
       // console.log(allData);
       currentWeather = dataWeather[0];
-      updateMainUI(moreData);
+      updateDashboardUI(moreData);
+      updateSummaryUI(dataWeather);
     }
   );
 }
@@ -49,23 +50,29 @@ const provideUserInput = async (data = {}) => {
   }
 };
 
-// Function to Update UI
-function updateMainUI(moreData) {
+// Function to Update Weather Dashboard
+function updateDashboardUI(moreData) {
   document.getElementById('city-name').innerHTML = moreData.city;
   document.getElementById('country').innerHTML = `${moreData.state} - ${moreData.country}`;
-
-  document.getElementById('forecast-date-icon').src = './src/client/media/calendar.svg';
-  document.getElementById('forecast-date-title').innerHTML = 'Forecast for';
-  document.getElementById('forecast-date').innerHTML = currentWeather.dateTime.slice(0, 10);
 
   document.getElementById('countdown-icon').src = './src/client/media/fast-time.svg';
   document.getElementById('countdown-title').innerHTML = 'days to go!';
   document.getElementById('countdown').innerHTML = moreData.countdown;
 
+  document.getElementById('trip-image').src = moreData.webformatURL;
+
+  updateCurrentWeatherUI();
+}
+
+function updateCurrentWeatherUI() {
+  document.getElementById('forecast-date-icon').src = './src/client/media/calendar.svg';
+  document.getElementById('forecast-date-title').innerHTML = 'Forecast for';
+  document.getElementById('forecast-date').innerHTML = currentWeather.dateTime;
+
   document.getElementById('temperature-icon').src = './src/client/media/thermometer.svg';
   document.getElementById('temperature').innerHTML = `${Math.round(
     currentWeather.temperature
-  )}<span> °C</span>`;
+  )}<span class="celcius"> °C</span>`;
 
   // Weather description
   document.getElementById('weather-icon0').src = './src/client/media/forecast-black.svg';
@@ -87,8 +94,28 @@ function updateMainUI(moreData) {
 
   document.getElementById('wind-dir-icon').src = './src/client/media/compass.svg';
   document.getElementById('wind-dir').innerHTML = currentWeather.windDirection;
+}
 
-  document.getElementById('trip-image').src = moreData.webformatURL;
+// Function to Update Weather Summary
+function updateSummaryUI(dataWeather) {
+  const resultsSummaryContainer = document.getElementById('results-summary');
+  resultsSummaryContainer.innerHTML = '';
+  dataWeather.forEach((objectWeather) => {
+    const newDiv = document.createElement('div');
+    newDiv.className = 'day-summary-ctn';
+    newDiv.addEventListener('click', () => {
+      currentWeather = objectWeather;
+      updateCurrentWeatherUI();
+      console.log('Hello');
+    });
+    const src = `https://www.weatherbit.io/static/img/icons/${objectWeather.weatherIcon}.png`;
+    newDiv.innerHTML = `<span class="date-summary">${objectWeather.dateTime.slice(5, 10)}</span>
+    <img class="icon-summary" src="${src}">
+    <span class="temperature-summary">${Math.round(
+      objectWeather.temperature
+    )}<span class="celcius-summary"> °C</span></span>`;
+    resultsSummaryContainer.appendChild(newDiv);
+  });
 }
 
 export { handleSubmit };
