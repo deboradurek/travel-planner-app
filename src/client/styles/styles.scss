@@ -2,6 +2,7 @@ body {
   margin: 0;
   font-family: 'Laila', sans-serif;
   color: #132743;
+  background-color: #edc988;
 }
 
 h1 {
@@ -54,10 +55,6 @@ a {
   text-align: left;
 }
 
-// .input-ctn:not(:last-child) {
-//   padding-right: 20px;
-// }
-
 label {
   font-weight: 500;
   display: block;
@@ -103,6 +100,7 @@ input[type='date']:invalid::-webkit-datetime-edit {
   border: none;
   background-color: #d7385e;
   color: #fffbf0;
+  cursor: pointer;
 }
 
 .submit {
@@ -135,7 +133,7 @@ input[type='date']:invalid::-webkit-datetime-edit {
 .results-dashboard {
   display: grid;
   grid-template-columns: 130px 130px 180px 1fr 130px;
-  gap: 1rem;
+  gap: 5px;
   margin: 40px 0;
 }
 
@@ -229,6 +227,7 @@ hr {
 #results-summary {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: 170px 170px;
   gap: 20px 10px;
   text-align: center;
   margin: 50px 0;
@@ -242,9 +241,17 @@ hr {
   background-color: rgba(255, 247, 225, 0.8);
   box-shadow: 1px 8px 5px #dbd8ce, 0px -2px 5px #fffbf0;
   cursor: pointer;
+  transition: all 0.3s;
 }
 
 .day-summary-ctn:hover {
+  transform: scale(1.1);
+}
+
+.selected-widget {
+  transform: scale(1.1);
+  background-color: rgba(237, 201, 136, 0.8);
+  border: 2px solid #edc988;
 }
 
 .date-summary {
@@ -275,6 +282,7 @@ hr {
 #trip-image {
   border-radius: 30px;
   margin-bottom: 50px;
+  box-shadow: 8px 8px 6px #9999;
 }
 
 .celcius {

@@ -100,14 +100,22 @@ function updateCurrentWeatherUI() {
 function updateSummaryUI(dataWeather) {
   const resultsSummaryContainer = document.getElementById('results-summary');
   resultsSummaryContainer.innerHTML = '';
-  dataWeather.forEach((objectWeather) => {
+  dataWeather.forEach((objectWeather, index) => {
     const newDiv = document.createElement('div');
-    newDiv.className = 'day-summary-ctn';
-    newDiv.addEventListener('click', () => {
+    newDiv.classList.add('day-summary-ctn');
+
+    if (index === 0) {
+      newDiv.classList.add('selected-widget');
+    }
+
+    newDiv.addEventListener('click', function () {
+      document.querySelector('.selected-widget').classList.remove('selected-widget');
+      this.classList.add('selected-widget');
+
       currentWeather = objectWeather;
       updateCurrentWeatherUI();
-      console.log('Hello');
     });
+
     const src = `https://www.weatherbit.io/static/img/icons/${objectWeather.weatherIcon}.png`;
     newDiv.innerHTML = `<span class="date-summary">${objectWeather.dateTime.slice(5, 10)}</span>
     <img class="icon-summary" src="${src}">
