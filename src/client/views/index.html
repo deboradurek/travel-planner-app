@@ -17,111 +17,112 @@
 
   <body>
     <div class="parent-ctn">
-      <header>
-        <!-- <h1>Find Your Adventure</h1> -->
-      </header>
-      <main>
-        <div class="info-ctn">
-          <section class="section-form">
-            <h1>Find Your Adventure</h1>
-            <form>
-              <div class="input-group">
-                <div class="input-ctn">
-                  <label for="city">City of Destination</label>
-                  <input type="text" id="city" name="city" placeholder="Vancouver" />
-                </div>
-                <div class="input-ctn">
-                  <label for="country">Country Code</label>
-                  <input type="text" id="country-code" name="country" placeholder="CA" />
-                </div>
-                <div class="input-ctn">
-                  <label for="date">Departure Date</label>
-                  <input type="date" id="date" name="date" required placeholder="YYYY / MM / DD" />
-                </div>
+      <div class="info-ctn">
+        <header>
+          <h1>Find Your Adventure</h1>
+        </header>
+        <section class="section-form">
+          <!-- <h1>Find Your Adventure</h1> -->
+          <form>
+            <div class="input-group">
+              <div class="input-ctn">
+                <label for="city">City of Destination</label>
+                <input type="text" id="city" name="city" placeholder="Vancouver" />
               </div>
-              <div class="input-btn-ctn">
-                <input type="reset" value="Clear" class="input-btn reset" />
-                <input type="submit" value="GET STARTED" class="input-btn submit" />
+              <div class="input-ctn">
+                <label for="country">Country Code</label>
+                <input type="text" id="country-code" name="country" placeholder="CA" />
               </div>
-            </form>
-          </section>
-
-          <section class="section-results">
-            <!-- City, State, Country -->
-            <span id="city-name" class="block"></span>
-            <span id="country" class="block"></span>
-
-            <!-- Weather Dashboard -->
-            <div class="results-dashboard">
-              <div class="forecast-date-ctn results-subgroup">
-                <img id="forecast-date-icon" class="top-icons" src="" alt="" />
-                <hr />
-                <span id="forecast-date-title" class="result block"></span>
-                <span id="forecast-date" class="result block"></span>
-              </div>
-
-              <div class="countdown-ctn results-subgroup">
-                <img id="countdown-icon" class="top-icons" src="" alt="" />
-                <hr />
-                <span id="countdown" class="result block"></span>
-                <span id="countdown-title" class="result"></span>
-              </div>
-
-              <div class="temperature-ctn results-subgroup">
-                <img id="temperature-icon" class="top-icons" src="" alt="" />
-                <hr />
-                <span id="temperature" class="result"></span>
-              </div>
-
-              <div class="weather-description-ctn results-subgroup">
-                <img id="weather-icon0" class="top-icons" src="" alt="" />
-                <hr />
-                <img id="weather-icon" class="result block" src="" alt="" />
-                <span id="weather-description" class="result block"></span>
-              </div>
-
-              <div class="extra-info-ctn results-subgroup">
-                <img id="extra-icon" class="top-icons" src="" alt="" />
-                <hr />
-                <div class="extra-info-subgroup">
-                  <img id="humidity-icon" class="extra-info-icon" src="" alt="" />
-                  <span id="humidity" class="result"></span>
-                </div>
-                <div class="extra-info-subgroup">
-                  <img id="clouds-icon" class="extra-info-icon" src="" alt="" />
-                  <span id="clouds" class="result"></span>
-                </div>
-                <div class="extra-info-subgroup">
-                  <img id="wind-icon" class="extra-info-icon" src="" alt="" />
-                  <span id="wind-speed" class="result"></span>
-                </div>
-                <div class="extra-info-subgroup">
-                  <img id="wind-dir-icon" class="extra-info-icon" src="" alt="" />
-                  <span id="wind-dir" class="result"></span>
-                </div>
+              <div class="input-ctn">
+                <label for="date">Departure Date</label>
+                <input type="date" id="date" name="date" required placeholder="YYYY / MM / DD" />
               </div>
             </div>
-
-            <!-- Weather Summary -->
-            <div id="results-summary"></div>
-
-            <!-- City/Country Image -->
-            <div class="image-ctn">
-              <img id="trip-image" src="" alt="" />
+            <div class="input-btn-ctn">
+              <input type="reset" value="Clear" class="input-btn reset" />
+              <input type="submit" value="GET STARTED" class="input-btn submit" />
             </div>
-          </section>
-        </div>
-      </main>
-      <footer>
-        <!-- <div>
-          Icons made by
-          <a href="https://www.flaticon.com/authors/dinosoftlabs" title="DinosoftLabs"
-            >DinosoftLabs</a
-          >
-          from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
-        </div> -->
-        <!-- <p>© 2021 Debora Durek - Udacity. All Rights Reserved.</p> -->
-      </footer>
+          </form>
+        </section>
+
+        <section class="section-results">
+          <!-- City, State, Country -->
+          <span id="city-name" class="block"></span>
+          <span id="country" class="block"></span>
+
+          <!-- Weather Dashboard -->
+          <div class="results-dashboard">
+            <div class="forecast-date-ctn results-subgroup">
+              <img id="forecast-date-icon" class="top-icons" src="" alt="" />
+              <hr />
+              <span id="forecast-date-title" class="result block"></span>
+              <span id="forecast-date" class="result block"></span>
+            </div>
+
+            <div class="countdown-ctn results-subgroup">
+              <img id="countdown-icon" class="top-icons" src="" alt="" />
+              <hr />
+              <span id="countdown" class="result block"></span>
+              <span id="countdown-title" class="result"></span>
+            </div>
+
+            <div class="temperature-ctn results-subgroup">
+              <img id="temperature-icon" class="top-icons" src="" alt="" />
+              <hr />
+              <span id="temperature" class="result"></span>
+            </div>
+
+            <div class="weather-description-ctn results-subgroup">
+              <img id="weather-icon0" class="top-icons" src="" alt="" />
+              <hr />
+              <img id="weather-icon" class="result block" src="" alt="" />
+              <span id="weather-description" class="result block"></span>
+            </div>
+
+            <div class="extra-info-ctn results-subgroup">
+              <img id="extra-icon" class="top-icons" src="" alt="" />
+              <hr />
+              <div class="extra-info-subgroup">
+                <img id="humidity-icon" class="extra-info-icon" src="" alt="" />
+                <span id="humidity" class="result"></span>
+              </div>
+              <div class="extra-info-subgroup">
+                <img id="clouds-icon" class="extra-info-icon" src="" alt="" />
+                <span id="clouds" class="result"></span>
+              </div>
+              <div class="extra-info-subgroup">
+                <img id="wind-icon" class="extra-info-icon" src="" alt="" />
+                <span id="wind-speed" class="result"></span>
+              </div>
+              <div class="extra-info-subgroup">
+                <img id="wind-dir-icon" class="extra-info-icon" src="" alt="" />
+                <span id="wind-dir" class="result"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Weather Summary -->
+          <div id="results-summary"></div>
+
+          <!-- City/Country Image -->
+          <div class="image-ctn">
+            <img id="trip-image" src="" alt="" />
+          </div>
+        </section>
+        <footer>
+          <a href="https://pixabay.com/"
+            ><img src="./src/client/media/pixabay-logo.svg" alt=""
+          /></a>
+          <p>
+            Icons made by
+            <a href="https://www.flaticon.com/authors/dinosoftlabs" title="DinosoftLabs"
+              >DinosoftLabs</a
+            >
+            from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+          </p>
+          <p class="main-footer">© 2021 Debora Durek - Udacity. All Rights Reserved.</p>
+        </footer>
+      </div>
     </div>
   </body>
 </html>
