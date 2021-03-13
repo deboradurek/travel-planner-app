@@ -112,7 +112,6 @@
 #results-summary {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: 170px 170px;
   gap: 20px 10px;
   text-align: center;
   margin: 50px 0;
@@ -137,9 +136,7 @@
 }
 
 .selected-widget {
-  transform: scale(1.1);
   background-color: rgba(237, 201, 136, 0.8);
-  border: 2px solid #edc988;
 }
 
 .date-summary {
