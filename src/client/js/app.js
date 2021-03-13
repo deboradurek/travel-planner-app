@@ -14,7 +14,6 @@ function handleSubmit(event) {
   // Send input values to server endpoint
   provideUserInput({ city, countryCode, travelDate, countdown }).then(
     ({ dataWeather, ...moreData }) => {
-      // console.log(allData);
       currentWeather = dataWeather[0];
       updateDashboardUI(moreData);
       updateSummaryUI(dataWeather);
@@ -36,18 +35,17 @@ const provideUserInput = async (data = {}) => {
   try {
     const res = await response.json();
     // Validate if response is not successful
-    // if (response.status !== 200) {
-    //   alert(res.message);
-    //   return null;
-    // }
-    // console.log(res);
+    if (response.status !== 200) {
+      alert(res.message);
+      return null;
+    }
     return res;
   } catch (error) {
     console.log('error', error);
   }
 };
 
-// Function to Update Weather Dashboard
+// Function to update weather dashboard using only moreData
 function updateDashboardUI(moreData) {
   document.getElementById('city-name').innerHTML = moreData.city;
   document.getElementById('country').innerHTML = `${moreData.state} - ${moreData.country}`;
@@ -61,6 +59,7 @@ function updateDashboardUI(moreData) {
   updateCurrentWeatherUI();
 }
 
+// Function to complement updateDashboardUI and updateSummaryUI using global variable currentWeather
 function updateCurrentWeatherUI() {
   document.getElementById('forecast-date-icon').src = './src/client/media/calendar.svg';
   document.getElementById('forecast-date-title').innerHTML = 'Forecast for';
@@ -93,7 +92,7 @@ function updateCurrentWeatherUI() {
   document.getElementById('wind-dir').innerHTML = currentWeather.windDirection;
 }
 
-// Function to Update Weather Summary
+// Function to update summary
 function updateSummaryUI(dataWeather) {
   const resultsSummaryContainer = document.getElementById('results-summary');
   resultsSummaryContainer.innerHTML = '';
