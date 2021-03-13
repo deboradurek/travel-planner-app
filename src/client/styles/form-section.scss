@@ -1,0 +1,66 @@
+.section-form {
+  margin: 0;
+}
+
+.input-text {
+  display: flex;
+  justify-content: space-between;
+  margin: 24px 0 24px;
+}
+
+.input-text-subgroup {
+  text-align: left;
+}
+
+.input-text-subgroup input {
+  font-family: 'Laila', sans-serif;
+  font-size: 15px;
+  padding: 8px 12px;
+  width: 250px;
+  height: 20px;
+  border-radius: 12px;
+  border: 2px solid #edc988;
+}
+
+#country-code {
+  width: 80px;
+}
+
+input:focus {
+  outline: none;
+}
+
+::placeholder {
+  color: #bbb;
+}
+
+input[type='date']:invalid::-webkit-datetime-edit {
+  color: #bbb;
+}
+
+.input-btn-ctn {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-btn {
+  padding: 10px;
+  width: 150px;
+  font-family: 'Laila', sans-serif;
+  font-weight: 500;
+  border-radius: 12px;
+  border: none;
+  background-color: #d7385e;
+  color: #fffbf0;
+  cursor: pointer;
+}
+
+.input-btn:hover {
+  background-color: #9e1d3b;
+}
+
+.submit {
+  width: 40vw;
+  min-width: fit-content;
+  margin-left: 40px;
+}

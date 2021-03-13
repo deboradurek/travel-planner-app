@@ -1,0 +1,177 @@
+// Dashboard
+
+.section-results {
+  margin: 0;
+}
+
+#city-name {
+  font-family: 'Pacifico', cursive;
+  font-size: 4rem;
+  margin: 60px 0 4px;
+}
+
+#country {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.3rem;
+}
+
+.results-dashboard {
+  display: grid;
+  grid-template-columns: 130px 130px 180px 1fr 130px;
+  gap: 5px;
+  margin: 40px 0;
+}
+
+.results-subgroup {
+  border-radius: 12px;
+  padding: 15px;
+  // background-color: rgba(237, 201, 136, 0.3);
+  background-color: rgba(255, 251, 240, 0.85);
+  box-shadow: 7px 11px 6px #dbd8ce;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.result {
+  font-size: 0.9rem;
+}
+
+.result p {
+  margin: 0 0 8px;
+}
+
+.block {
+  display: block;
+}
+
+#forecast-date-title {
+  margin-top: 12px;
+}
+
+#forecast-date {
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+#countdown {
+  font-size: 2rem;
+}
+
+.temperature-ctn {
+  white-space: nowrap;
+}
+
+#temperature {
+  font-size: 4rem;
+  font-weight: 600;
+  color: #d7385e;
+}
+
+/* Start */
+// The next class is added or removed dynamically
+
+.celcius {
+  font-size: 20%;
+}
+
+/* End */
+
+.weather-description-ctn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 600;
+}
+
+.weather-description-ctn hr {
+  margin-bottom: 0;
+}
+
+#weather-icon {
+  width: 140px;
+}
+
+#weather-description {
+  font-size: 1.1rem;
+}
+
+.extra-info-subgroup {
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.extra-info-icon {
+  width: 30%;
+  margin-right: 8px;
+}
+
+// Weather Summary
+
+#results-summary {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: 170px 170px;
+  gap: 20px 10px;
+  text-align: center;
+  margin: 50px 0;
+}
+
+/* Start */
+// The next class is added or removed dynamically
+
+.widget-summary-ctn {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  padding: 15px 5px;
+  background-color: rgba(255, 247, 225, 0.8);
+  box-shadow: 1px 8px 5px #dbd8ce, 0px -2px 5px #fffbf0;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.widget-summary-ctn:hover {
+  transform: scale(1.1);
+}
+
+.selected-widget {
+  transform: scale(1.1);
+  background-color: rgba(237, 201, 136, 0.8);
+  border: 2px solid #edc988;
+}
+
+.date-summary {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.icon-summary {
+  width: 80px;
+}
+
+.temperature-summary {
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: #d7385e;
+}
+
+.celcius-summary {
+  font-size: 60%;
+}
+
+/* End */
+
+// City or Country Image
+
+.image-ctn {
+  text-align: center;
+}
+
+#trip-image {
+  border-radius: 30px;
+  margin-bottom: 50px;
+  box-shadow: 8px 8px 6px #9999;
+}
