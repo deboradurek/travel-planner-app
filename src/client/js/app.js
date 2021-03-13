@@ -53,7 +53,7 @@ function updateDashboardUI(moreData) {
   document.getElementById('country').innerHTML = `${moreData.state} - ${moreData.country}`;
 
   document.getElementById('countdown-icon').src = './src/client/media/fast-time.svg';
-  document.getElementById('countdown-title').innerHTML = 'days to go!';
+  document.getElementById('countdown-text').innerHTML = 'days to go!';
   document.getElementById('countdown').innerHTML = moreData.countdown;
 
   document.getElementById('trip-image').src = moreData.webformatURL;
@@ -99,7 +99,7 @@ function updateSummaryUI(dataWeather) {
   resultsSummaryContainer.innerHTML = '';
   dataWeather.forEach((objectWeather, index) => {
     const newDiv = document.createElement('div');
-    newDiv.classList.add('day-summary-ctn');
+    newDiv.classList.add('widget-summary-ctn');
 
     if (index === 0) {
       newDiv.classList.add('selected-widget');
