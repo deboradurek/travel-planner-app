@@ -1,6 +1,3 @@
-// Event listener to form
-document.querySelector('form').addEventListener('submit', handleSubmit);
-
 let currentWeather;
 
 // Main function
@@ -9,7 +6,7 @@ function handleSubmit(event) {
   // Get user input
   const city = document.getElementById('city').value;
   const countryCode = document.getElementById('country-code').value;
-  const travelDate = document.getElementById('date').value;
+  const travelDate = document.getElementById('travelDate').value;
   // Create countdown
   const presentDate = new Date().setHours(0);
   const futureDate = new Date(travelDate).setHours(23);
