@@ -5,13 +5,13 @@
 }
 
 #city-name {
-  font-family: 'Pacifico', cursive;
+  font-family: $font-handwriting;
   font-size: 4rem;
   margin: 60px 0 4px;
 }
 
 #country {
-  font-family: 'Pacifico', cursive;
+  font-family: $font-handwriting;
   font-size: 1.3rem;
 }
 
@@ -25,9 +25,8 @@
 .results-subgroup {
   border-radius: 12px;
   padding: 15px;
-  // background-color: rgba(237, 201, 136, 0.3);
-  background-color: rgba(255, 251, 240, 0.85);
-  box-shadow: 7px 11px 6px #dbd8ce;
+  background-color: $background-rgba-color;
+  box-shadow: 7px 11px 6px $shadow-on-background;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -155,7 +154,7 @@
 .temperature-summary {
   font-weight: 600;
   font-size: 1.3rem;
-  color: #d7385e;
+  color: $secondary-color-pink;
 }
 
 .celcius-summary {
@@ -173,5 +172,5 @@
 #trip-image {
   border-radius: 30px;
   margin-bottom: 50px;
-  box-shadow: 8px 8px 6px #9999;
+  box-shadow: 8px 8px 6px $flat-color-gray;
 }

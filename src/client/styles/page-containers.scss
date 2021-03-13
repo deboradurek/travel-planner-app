@@ -1,10 +1,7 @@
 .parent-ctn {
   min-height: 100vh;
-  background-image: url('../media/bckg-img-arches-national-park.jpg');
-  background-position: 0 -150px;
-  background-repeat: no-repeat;
+  background: url('../media/bckg-img-arches-national-park.jpg') no-repeat fixed 0 -150px;
   background-size: cover;
-  background-attachment: fixed;
   display: grid;
   grid-template-columns: 35% 1fr;
 }
@@ -12,7 +9,7 @@
 .info-ctn {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  background-color: rgba(255, 251, 240, 0.85);
+  background-color: $background-rgba-color;
   padding: 30px 50px;
   grid-column: 2;
 }
