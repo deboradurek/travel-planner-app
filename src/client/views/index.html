@@ -9,78 +9,95 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Laila:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Laila:wght@300;400;500;600;700&family=Pacifico&display=swap"
       rel="stylesheet"
     />
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
   </head>
 
   <body>
     <div class="parent-ctn">
       <div class="info-ctn">
+        <!-- Header -->
         <header>
           <h1>Find Your Adventure</h1>
         </header>
+
+        <!-- Form Section -->
         <section class="section-form">
-          <!-- <h1>Find Your Adventure</h1> -->
           <form>
-            <div class="input-group">
-              <div class="input-ctn">
+            <div class="input-text">
+              <!-- City Input -->
+              <div class="input-text-subgroup">
                 <label for="city">City of Destination</label>
-                <input type="text" id="city" name="city" placeholder="Vancouver" />
+                <input type="text" id="city" name="city" required placeholder="Vancouver" />
               </div>
-              <div class="input-ctn">
+              <!-- Country Code Input -->
+              <div class="input-text-subgroup">
                 <label for="country">Country Code</label>
                 <input type="text" id="country-code" name="country" placeholder="CA" />
               </div>
-              <div class="input-ctn">
+              <!-- Date Input -->
+              <div class="input-text-subgroup">
                 <label for="date">Departure Date</label>
-                <input type="date" id="date" name="date" required placeholder="YYYY / MM / DD" />
+                <input
+                  type="date"
+                  id="travelDate"
+                  name="date"
+                  required
+                  placeholder="YYYY / MM / DD"
+                />
               </div>
             </div>
+            <!-- Buttons -->
             <div class="input-btn-ctn">
-              <input type="reset" value="Clear" class="input-btn reset" />
+              <input type="reset" value="Clear" class="input-btn" />
               <input type="submit" value="GET STARTED" class="input-btn submit" />
             </div>
           </form>
         </section>
 
+        <!-- Results Section -->
         <section class="section-results">
-          <!-- City, State, Country -->
+          <!-- Place Names -->
           <span id="city-name" class="block"></span>
           <span id="country" class="block"></span>
 
           <!-- Weather Dashboard -->
           <div class="results-dashboard">
-            <div class="forecast-date-ctn results-subgroup">
-              <img id="forecast-date-icon" class="top-icons" src="" alt="" />
+            <!-- Forecast Date -->
+            <div class="results-subgroup">
+              <img id="forecast-date-icon" src="" alt="" />
               <hr />
               <span id="forecast-date-title" class="result block"></span>
               <span id="forecast-date" class="result block"></span>
             </div>
 
-            <div class="countdown-ctn results-subgroup">
-              <img id="countdown-icon" class="top-icons" src="" alt="" />
+            <!-- Countdown -->
+            <div class="results-subgroup">
+              <img id="countdown-icon" src="" alt="" />
               <hr />
               <span id="countdown" class="result block"></span>
-              <span id="countdown-title" class="result"></span>
+              <span id="countdown-text" class="result"></span>
             </div>
 
-            <div class="temperature-ctn results-subgroup">
-              <img id="temperature-icon" class="top-icons" src="" alt="" />
+            <!-- Current Temperature -->
+            <div class="results-subgroup temperature-ctn">
+              <img id="temperature-icon" src="" alt="" />
               <hr />
               <span id="temperature" class="result"></span>
             </div>
 
-            <div class="weather-description-ctn results-subgroup">
-              <img id="weather-icon0" class="top-icons" src="" alt="" />
+            <!-- Weather Description -->
+            <div class="results-subgroup weather-description-ctn">
+              <img id="weather-icon0" src="" alt="" />
               <hr />
               <img id="weather-icon" class="result block" src="" alt="" />
               <span id="weather-description" class="result block"></span>
             </div>
 
-            <div class="extra-info-ctn results-subgroup">
-              <img id="extra-icon" class="top-icons" src="" alt="" />
+            <!-- Extra Info -->
+            <div class="results-subgroup">
+              <img id="extra-icon" src="" alt="" />
               <hr />
               <div class="extra-info-subgroup">
                 <img id="humidity-icon" class="extra-info-icon" src="" alt="" />
@@ -109,6 +126,8 @@
             <img id="trip-image" src="" alt="" />
           </div>
         </section>
+
+        <!-- Footer -->
         <footer>
           <a href="https://pixabay.com/"
             ><img src="./src/client/media/pixabay-logo.svg" alt=""
