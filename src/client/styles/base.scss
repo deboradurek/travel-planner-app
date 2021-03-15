@@ -22,9 +22,10 @@ label {
   display: block;
 }
 
-hr {
-  border: 0;
-  border-top: 1px solid $secondary-color-orange;
-  margin: 20px auto 30px;
-  width: 90%;
+.block {
+  display: block;
+}
+
+.hidden {
+  display: none;
 }

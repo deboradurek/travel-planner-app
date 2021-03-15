@@ -33,16 +33,19 @@
   align-items: center;
 }
 
+hr {
+  border: 0;
+  border-top: 1px solid $secondary-color-orange;
+  margin: 20px auto 30px;
+  width: 90%;
+}
+
 .result {
   font-size: 0.9rem;
 }
 
 .result p {
   margin: 0 0 8px;
-}
-
-.block {
-  display: block;
 }
 
 #forecast-date-title {

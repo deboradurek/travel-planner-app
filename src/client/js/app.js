@@ -47,6 +47,8 @@ const provideUserInput = async (data = {}) => {
 
 // Function to update weather dashboard using only moreData
 function updateDashboardUI(moreData) {
+  document.querySelector('.section-results').classList.remove('hidden');
+
   document.getElementById('city-name').innerHTML = moreData.city;
   document.getElementById('country').innerHTML = `${moreData.state} - ${moreData.country}`;
 
@@ -54,7 +56,7 @@ function updateDashboardUI(moreData) {
   document.getElementById('countdown-text').innerHTML = 'days to go!';
   document.getElementById('countdown').innerHTML = moreData.countdown;
 
-  document.getElementById('trip-image').src = moreData.webformatURL;
+  // document.getElementById('trip-image').src = moreData.webformatURL;
 
   updateCurrentWeatherUI();
 }
