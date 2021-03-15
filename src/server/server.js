@@ -49,13 +49,12 @@ async function postData(req, res) {
   try {
     await getGeoNames(req.body);
     await getWeatherbit();
-    await getPixabay();
+    // await getPixabay();
     res.send(projectData);
   } catch (error) {
-    res.status(404).send({
+    res.status(503).send({
       message: error.message,
     });
-    // console.log(error.message);
   }
 }
 
@@ -87,7 +86,6 @@ function getGeoNames({ city, countryCode, travelDate, countdown }) {
           travelDate,
           countdown,
         };
-        // console.log(projectData);
       })
   );
 }
@@ -127,7 +125,6 @@ function getWeatherbit() {
               },
             ],
           };
-          // console.log(projectData);
         })
     );
   } else if (projectData.countdown > 7) {
@@ -158,8 +155,6 @@ function getWeatherbit() {
             ...projectData,
             dataWeather: newDataArray,
           };
-
-          // console.log(projectData);
         })
     );
   }
@@ -222,6 +217,10 @@ const makeRequest = async (url, data) => {
     };
   }
   const response = await fetch(url, options);
+
+  if (response.status !== 200) {
+    throw new Error(response.statusText);
+  }
 
   try {
     const res = await response.json();
