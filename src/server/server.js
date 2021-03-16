@@ -49,7 +49,7 @@ async function postData(req, res) {
   try {
     await getGeoNames(req.body);
     await getWeatherbit();
-    // await getPixabay();
+    await getPixabay();
     res.send(projectData);
   } catch (error) {
     res.status(503).send({
@@ -166,7 +166,7 @@ function getPixabay() {
   const key = process.env.PIXABAY_API_KEY;
   const searchTerm = encodeURIComponent(projectData.city);
   const imageType = 'photo';
-  const category = 'buildings';
+  const category = 'places';
   const qtyPerPage = 3;
   const orientation = 'horizontal';
   let completeUrlAPI = `${baseUrlAPI}key=${key}&q=${searchTerm}&image_type=${imageType}&category=${category}&per_page=${qtyPerPage}&orientation=${orientation}`;

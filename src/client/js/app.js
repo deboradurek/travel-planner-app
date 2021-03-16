@@ -56,7 +56,7 @@ function updateDashboardUI(moreData) {
   document.getElementById('countdown-text').innerHTML = 'days to go!';
   document.getElementById('countdown').innerHTML = moreData.countdown;
 
-  // document.getElementById('trip-image').src = moreData.webformatURL;
+  document.getElementById('trip-image').src = moreData.webformatURL;
 
   updateCurrentWeatherUI();
 }
