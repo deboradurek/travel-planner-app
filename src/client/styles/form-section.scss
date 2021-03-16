@@ -10,34 +10,36 @@
 
 .input-text-subgroup {
   text-align: left;
-}
 
-.input-text-subgroup input {
-  font-family: $font-main-text;
-  font-size: 15px;
-  padding: 8px 12px;
-  width: 250px;
-  height: 20px;
-  border-radius: 12px;
-  border: 2px solid $secondary-color-orange;
-  background-color: $offwhite-color;
-}
+  input {
+    font-family: $font-main-text;
+    font-size: 15px;
+    padding: 8px 12px;
+    width: 250px;
+    height: 20px;
+    border-radius: 12px;
+    border: 2px solid $secondary-color-orange;
+    background-color: $offwhite-color;
 
-#country-code {
-  width: 80px;
-}
+    &:focus {
+      outline: none;
+    }
 
-input:focus {
-  outline: none;
+    &[type='date']:invalid::-webkit-datetime-edit {
+      color: $flat-color-gray;
+    }
+  }
 }
 
 ::placeholder {
   color: $flat-color-gray;
 }
 
-input[type='date']:invalid::-webkit-datetime-edit {
-  color: $flat-color-gray;
+#country-code {
+  width: 80px;
 }
+
+// Buttons
 
 .input-btn-ctn {
   display: flex;
@@ -54,10 +56,14 @@ input[type='date']:invalid::-webkit-datetime-edit {
   background-color: $secondary-color-pink;
   color: $offwhite-color;
   cursor: pointer;
-}
 
-.input-btn:hover {
-  background-color: $color-darkpink;
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    background-color: $color-darkpink;
+  }
 }
 
 .submit {

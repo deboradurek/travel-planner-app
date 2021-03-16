@@ -24,7 +24,7 @@
 
 .results-subgroup {
   border-radius: 12px;
-  padding: 15px;
+  padding: 25px 15px 15px;
   background-color: $background-rgba-color;
   box-shadow: 7px 11px 6px $shadow-on-background;
   text-align: center;
@@ -42,10 +42,10 @@ hr {
 
 .result {
   font-size: 0.9rem;
-}
 
-.result p {
-  margin: 0 0 8px;
+  p {
+    margin: 0 0 8px;
+  }
 }
 
 #forecast-date-title {
@@ -85,10 +85,10 @@ hr {
   flex-direction: column;
   align-items: center;
   font-weight: 600;
-}
 
-.weather-description-ctn hr {
-  margin-bottom: 0;
+  hr {
+    margin-bottom: 0;
+  }
 }
 
 #weather-icon {
@@ -132,10 +132,10 @@ hr {
   box-shadow: 1px 8px 5px #dbd8ce, 0px -2px 5px #fffbf0;
   cursor: pointer;
   transition: all 0.3s;
-}
 
-.widget-summary-ctn:hover {
-  transform: scale(1.1);
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 .selected-widget {

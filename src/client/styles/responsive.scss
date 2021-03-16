@@ -1,6 +1,8 @@
-// Mobile Responsive
+/* Start */
+// Mixins 
+// Shared Responsive Layout
 
-@media (max-width: 767px) {
+@mixin mobile-tablet {
   .parent-ctn {
     background-position: left;
     grid-template-columns: 1fr;
@@ -11,20 +13,67 @@
     grid-column: 1;
   }
 
+  hr {
+    margin-bottom: 20px;
+  }
+
+  .icon-summary {
+    width: 60px;
+  }
+}
+
+@mixin tablet-large {
+  .results-dashboard {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .extra-info-ctn {
+    display: grid;
+    grid-column: 1 / 5;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .extra-info-subctn {
+    grid-column: 1 / 5;
+  }
+}
+
+@mixin mobile-tablet-large {
+  .extra-info-subgroup {
+    justify-content: center;
+    padding: 8px 0;
+  }
+}
+
+@mixin extra-info-icon-width {
+  .extra-info-icon {
+    width: 20%;
+  }
+}
+
+/* End */
+
+// Mobile Responsive
+
+@media (max-width: 767px) {
+  @include mobile-tablet;
+  @include mobile-tablet-large;
+  @include extra-info-icon-width;
+
   .input-text {
     flex-direction: column;
   }
 
   .input-text-subgroup {
     margin: 12px 0;
+
+    input {
+      width: 90%;
+    }
   }
 
   label {
     margin-bottom: 5px;
-  }
-
-  .input-text-subgroup input {
-    width: 90%;
   }
 
   .input-btn {
@@ -41,22 +90,13 @@
   }
 
   .extra-info-ctn {
-    grid-column: 1 / 3;
     display: grid;
+    grid-column: 1 / 3;
     grid-template-columns: 1fr 1fr;
   }
 
   .extra-info-subctn {
     grid-column: 1 / 3;
-  }
-
-  .extra-info-icon {
-    width: 20%;
-  }
-
-  .extra-info-subgroup {
-    justify-content: center;
-    padding: 8px 0;
   }
 
   #city-name {
@@ -72,10 +112,6 @@
     margin: 60px 0;
   }
 
-  .icon-summary {
-    width: 60px;
-  }
-
   #trip-image {
     width: 100%;
   }
@@ -83,10 +119,69 @@
 
 // Tablet Responsive
 
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1023px) {
+  @include mobile-tablet;
+  @include mobile-tablet-large;
+  @include tablet-large;
+  @include extra-info-icon-width;
+
+  .submit {
+    width: 60vw;
+  }
 }
 
-// Big Screens Reponsive
+// Large Screens Reponsive
 
-@media (min-width: 1500px) {
+@media (min-width: 1024px) and (max-width: 1439px) {
+  @include tablet-large;
+  @include mobile-tablet-large;
+  @include extra-info-icon-width;
+
+  .parent-ctn {
+    background-position: 0;
+  }
+
+  .info-ctn {
+    padding: 50px 30px 10px;
+  }
+
+  .input-text-subgroup input {
+    width: auto;
+  }
+
+  .submit {
+    width: 40vw;
+  }
+
+  .icon-summary {
+    width: 55px;
+  }
+
+  .temperature-summary {
+    font-size: 1rem;
+  }
+
+  #trip-image {
+    width: 80%;
+  }
+}
+
+// Extra-Large Screens Reponsive
+
+@media (min-width: 1800px) {
+  .parent-ctn {
+    background-position: 0 -500px;
+  }
+
+  .info-ctn {
+    justify-self: self-end;
+  }
+
+  .results-dashboard {
+    max-width: 1500px;
+  }
+
+  #results-summary {
+    max-width: 1500px;
+  }
 }
