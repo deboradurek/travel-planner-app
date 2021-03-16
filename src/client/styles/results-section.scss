@@ -7,7 +7,7 @@
 #city-name {
   font-family: $font-handwriting;
   font-size: 4rem;
-  margin: 60px 0 4px;
+  margin-bottom: 4px;
 }
 
 #country {
@@ -117,7 +117,7 @@ hr {
   grid-template-columns: repeat(8, 1fr);
   gap: 20px 10px;
   text-align: center;
-  margin: 50px 0;
+  margin: 80px 0;
 }
 
 /* Start */
@@ -149,6 +149,7 @@ hr {
 
 .icon-summary {
   width: 80px;
+  align-self: center;
 }
 
 .temperature-summary {

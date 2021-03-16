@@ -1,11 +1,11 @@
 footer {
+  margin-top: 30px;
   font-size: 0.8rem;
   text-align: center;
   color: $flat-color-gray;
-}
-
-footer p {
-  margin: 6px;
+  p {
+    margin: 6px 0;
+  }
 }
 
 .main-footer {

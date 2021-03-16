@@ -1,11 +1,11 @@
 .section-form {
-  margin: 0;
+  margin: 32px 0 80px;
 }
 
 .input-text {
   display: flex;
   justify-content: space-between;
-  margin: 24px 0 24px;
+  margin-bottom: 24px;
 }
 
 .input-text-subgroup {
@@ -20,6 +20,7 @@
   height: 20px;
   border-radius: 12px;
   border: 2px solid $secondary-color-orange;
+  background-color: $offwhite-color;
 }
 
 #country-code {
@@ -51,7 +52,7 @@ input[type='date']:invalid::-webkit-datetime-edit {
   border-radius: 12px;
   border: none;
   background-color: $secondary-color-pink;
-  color: $text-color-offwhite;
+  color: $offwhite-color;
   cursor: pointer;
 }
 
