@@ -161,7 +161,6 @@ const makeRequest = async (url, data) => {
     };
   }
   const response = await fetch(url, options);
-
   if (response.status !== 200) {
     throw new Error(response.statusText);
   }
@@ -174,4 +173,4 @@ const makeRequest = async (url, data) => {
   }
 };
 
-module.exports = { getGeoNames };
+module.exports = { getGeoNames, getWeatherbit, getPixabay };
