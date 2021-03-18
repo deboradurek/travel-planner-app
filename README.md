@@ -10,9 +10,9 @@ Its goal is to provide practice with:
 - Node.js and Express.
 - Webpack, Loaders and Plugins.
 - Use of multiple inter-connecting external APIs:
-    - [Geonames](http://www.geonames.org/) API to fetch location data such as latitute and longitude.
-    - [Weatherbit](https://www.weatherbit.io/) to fetch current weather and weather forecast.
-    - [Pixabay](https://pixabay.com/) API to fetch image of city and country.
+  - [Geonames](http://www.geonames.org/) API to fetch location data such as latitute and longitude.
+  - [Weatherbit](https://www.weatherbit.io/) to fetch current weather and weather forecast.
+  - [Pixabay](https://pixabay.com/) API to fetch image of city and country.
 - Service Workers
 
 ---
@@ -22,13 +22,15 @@ Its goal is to provide practice with:
 This project is a **Travel Planner** application that obtains a desired trip location and some date from the user. It then displays some weather details and an image of the location using information obtained from external APIs.
 
 _Country Code_:
+
 - Optional input field. It makes sure that the desired city is fetch from the Geonames API
 
 _Departure Date_:
+
 - If user enters a departure date less than 7 days away, response will show current weather.
 - If date is more than 7 days away, though, response will show forecast for the next 16 days.
 
- ---
+  ***
 
 ## Project Extensions
 
@@ -54,7 +56,6 @@ Follow the important steps bellow to have the project running in the correct mod
 
 - Start the server: `$ npm run start`
 
-
 ---
 
 ## Testing the Code
@@ -62,3 +63,5 @@ Follow the important steps bellow to have the project running in the correct mod
 You can also run tests for javascript files. To do this, do the following:
 
 - Run tests using jest: `$ npm run test`
+
+- Run tests using jest --watch: `$ npm run test-watch`
